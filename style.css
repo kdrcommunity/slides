@@ -605,6 +605,59 @@ body {
   line-height: 1.6;
 }
 
+/* ===================== SLIDE 6: Operational Philosophy ===================== */
+.philosophy-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.philosophy-main h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.philosophy-main p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.philosophy-points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.philosophy-pill {
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.philosophy-pill:hover {
+  border-color: var(--yellow-400);
+  transform: translateY(-2px);
+}
+
+.pill-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.pill-desc {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
 /* ===================== SLIDE 6: Connect ===================== */
 .connect-layout {
   display: grid;
@@ -729,6 +782,11 @@ body {
 }
 
 .slide-6::before {
+  top: -120px;
+  left: -160px;
+}
+
+.slide-7::before {
   top: -100px;
   left: -200px;
   width: 800px;
@@ -796,6 +854,11 @@ body {
 
   .values-layout {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .philosophy-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .connect-layout {
@@ -1103,6 +1166,34 @@ body {
   .value-num {
     font-size: 11px;
     margin-bottom: 10px;
+  }
+
+  /* Slide 6 - Operational Philosophy */
+  .philosophy-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .philosophy-main h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .philosophy-main p {
+    font-size: 14px;
+  }
+
+  .philosophy-pill {
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  .pill-title {
+    font-size: 14px;
+  }
+
+  .pill-desc {
+    font-size: 12px;
   }
 
   /* Slide 6 - Connect */

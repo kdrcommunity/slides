@@ -1,4 +1,5 @@
 name: Deploy to Main Site
+
 on:
   push:
     branches: [main]
@@ -7,17 +8,32 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Source Code
         uses: actions/checkout@v4
+
+      - name: Prepare Files for Deployment
+        run: |
+
+          mkdir -p out
+
+
+          cp -r . out/
+
+
+          rm -rf out/.git
+
+
+          rm -rf out/.github
 
       - name: Pushing to Main Repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: '.'
+          source-directory: 'out'
           destination-github-username: 'kdrcommunity'
           destination-repository-name: 'kdr.community'
           target-branch: 'main'
           target-directory: 'slides'
           user-email: 'agsn.does6@gmail.com'
+          user-name: 'guswawan'

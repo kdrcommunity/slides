@@ -149,3 +149,4 @@ function hideHint() {
 }
 document.addEventListener('keydown', hideHint, { once: true });
 document.addEventListener('click', hideHint, { once: true });
+

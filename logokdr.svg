@@ -1,0 +1,18 @@
+<svg
+  width="16"
+  height="16"
+  viewBox="0 0 16 16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <style>
+      :root {
+        --primary: oklch(0.82 0.17 80);
+      }
+    </style>
+  </defs>
+
+  <polygon fill="var(--primary)" points="8,0 15,4 15,12 8,16 1,12 1,4" />
+  <polygon fill="oklch(from var(--primary) calc(l - 0.1) c h)" points="1,4 8,8 8,16 1,12" />
+  <polygon fill="oklch(from var(--primary) calc(l + 0.1) c h)" points="8,8 15,4 15,12 8,16" />
+</svg>

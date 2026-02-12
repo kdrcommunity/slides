@@ -14,23 +14,21 @@ jobs:
       - name: Prepare Files for Deployment
         run: |
 
-          mkdir -p out
+          mkdir -p out_deploy
 
 
-          cp -r . out/
+          rsync -av --exclude='out_deploy' . out_deploy/
 
 
-          rm -rf out/.git
-
-
-          rm -rf out/.github
+          rm -rf out_deploy/.git
+          rm -rf out_deploy/.github
 
       - name: Pushing to Main Repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'out'
+          source-directory: 'out_deploy'
           destination-github-username: 'kdrcommunity'
           destination-repository-name: 'kdr.community'
           target-branch: 'main'

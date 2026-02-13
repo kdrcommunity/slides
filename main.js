@@ -150,3 +150,75 @@ function hideHint() {
 document.addEventListener('keydown', hideHint, { once: true });
 document.addEventListener('click', hideHint, { once: true });
 
+// Apple-style smooth accordion for timeline cards
+(function initTimelineAccordion() {
+  const timeline = document.querySelector('.slide-3 .timeline');
+  if (!timeline) return;
+
+  const cards = Array.from(timeline.querySelectorAll('.timeline-card'));
+  if (!cards.length) return;
+
+  function setExpanded(card, expand) {
+    const body = card.querySelector('.timeline-card-body');
+    const item = card.closest('.timeline-item');
+    if (!body) return;
+
+    const isExpanded = card.classList.contains('expanded');
+    if (expand === isExpanded) return;
+
+    const startHeight = body.offsetHeight;
+    const endHeight = expand ? body.scrollHeight : 0;
+
+    body.style.height = `${startHeight}px`;
+    // Force reflow so the starting height is applied
+    // eslint-disable-next-line no-unused-expressions
+    body.offsetHeight;
+    body.style.height = `${endHeight}px`;
+
+    if (expand) {
+      card.classList.add('expanded');
+      if (item) item.classList.add('expanded');
+    } else {
+      card.classList.remove('expanded');
+      if (item) item.classList.remove('expanded');
+    }
+
+    const onEnd = (event) => {
+      if (event.target !== body || event.propertyName !== 'height') return;
+      if (expand) {
+        body.style.height = 'auto';
+      }
+      body.removeEventListener('transitionend', onEnd);
+    };
+
+    body.addEventListener('transitionend', onEnd);
+  }
+
+  // Initialize cards: first open, others closed
+  cards.forEach((card, index) => {
+    const body = card.querySelector('.timeline-card-body');
+    const header = card.querySelector('.timeline-card-header');
+    if (!body || !header) return;
+
+    body.style.overflow = 'hidden';
+
+    if (index === 0) {
+      body.style.height = 'auto';
+      card.classList.add('expanded');
+      const item = card.closest('.timeline-item');
+      if (item) item.classList.add('expanded');
+    } else {
+      body.style.height = '0px';
+    }
+
+    header.addEventListener('click', () => {
+      cards.forEach((other) => {
+        if (other === card) {
+          setExpanded(other, true);
+        } else {
+          setExpanded(other, false);
+        }
+      });
+    });
+  });
+})();
